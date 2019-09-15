@@ -123,5 +123,13 @@ STATIC_URL = '/static/'
 
 # Graphene GraphQL Schema
 GRAPHENE = {
-    'SCHEMA': 'hackernews.schema.schema'
+    'SCHEMA': 'hackernews.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ]
 }
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
